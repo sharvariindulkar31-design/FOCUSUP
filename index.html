@@ -4,115 +4,110 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FOCUSUP | Study with Mochi</title>
+  <title>FOCUSUP | Study Space</title>
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
   <header class="topbar">
-    <a class="logo" href="#">focus<span>up.</span></a>
-    <span class="tagline">a little progress every day 🌷</span>
+    <a class="logo" href="#">focus<span>up</span> ✿</a>
+    <span class="tagline">A little progress every day 🌷</span>
   </header>
 
   <main class="container">
     <section class="welcome">
-      <p class="eyebrow">YOUR LITTLE CORNER OF CALM</p>
-      <h1>Make time for your dreams.</h1>
-      <p>Study gently, stay consistent, and grow with Mochi.</p>
+      <p class="eyebrow">YOUR COZY STUDY CORNER</p>
+      <h1>One step at a time.</h1>
+      <p>Take a breath, choose a task, and begin. You've got this!</p>
     </section>
 
-    <section class="stats-grid">
-      <article class="stat-card">
-        <span>📚</span><p>Today's study time</p>
+    <section class="stats">
+      <article class="card stat">
+        <span>📚</span>
+        <p>Study time today</p>
         <h2 id="todayTime">0 min</h2>
       </article>
-      <article class="stat-card">
-        <span>✨</span><p>Focus sessions</p>
+      <article class="card stat">
+        <span>🌟</span>
+        <p>Study sessions</p>
         <h2 id="sessionCount">0</h2>
       </article>
-      <article class="stat-card">
-        <span>💗</span><p>Pet experience</p>
-        <h2 id="totalXP">0 XP</h2>
+      <article class="card stat">
+        <span>🐾</span>
+        <p>Pet level</p>
+        <h2 id="petLevel">1</h2>
       </article>
     </section>
 
     <section class="main-grid">
       <article class="card timer-card">
-        <p class="eyebrow">TIME TO FOCUS</p>
-        <h2>Your study session</h2>
+        <p class="eyebrow">FOCUS TIME</p>
+        <h2>Make this time yours ✨</h2>
+        <p class="muted">Choose a duration or enter your own.</p>
 
-        <div class="mode-row">
-          <button class="mode active" data-minutes="25">25 min</button>
-          <button class="mode" data-minutes="50">50 min</button>
-          <button class="mode" data-minutes="60">1 hour</button>
+        <div class="presets">
+          <button class="preset" data-minutes="25">25 min</button>
+          <button class="preset" data-minutes="50">50 min</button>
+          <button class="preset" data-minutes="60">1 hour</button>
         </div>
 
-        <label for="customMinutes">Or choose your own duration</label>
-        <div class="custom-row">
-          <input id="customMinutes" type="number" min="1" max="480" value="90">
-          <span>minutes</span>
-          <button id="setDuration" class="secondary-btn">Set</button>
-        </div>
+        <form id="durationForm" class="duration-form">
+          <label for="customMinutes">Custom duration (minutes)</label>
+          <div class="inline-form">
+            <input id="customMinutes" type="number" min="1" max="480"
+              value="25" required>
+            <button type="submit" class="secondary">Set</button>
+          </div>
+        </form>
 
-        <div class="timer-circle">
-          <span id="timerDisplay">25:00</span>
-          <small id="timerStatus">Ready when you are</small>
-        </div>
+        <div class="timer" id="timerDisplay" role="timer"
+          aria-live="off">25:00</div>
+        <p id="timerMessage" class="muted" aria-live="polite">
+          Ready when you are 🌸
+        </p>
 
-        <div class="button-row">
-          <button id="startTimer" class="primary-btn">Start studying</button>
-          <button id="resetTimer" class="secondary-btn">Reset</button>
+        <div class="timer-actions">
+          <button id="startBtn" class="primary" type="button">▶ Start studying</button>
+          <button id="resetBtn" class="secondary" type="button">↺ Reset</button>
         </div>
-
-        <p class="hint">🌿 Every focused minute earns Mochi 1 XP.</p>
       </article>
 
       <article class="card pet-card">
-        <p class="eyebrow">YOUR STUDY COMPANION</p>
+        <p class="eyebrow">YOUR STUDY BUDDY</p>
+        <h2>Meet Mochi 🐾</h2>
         <div id="petEmoji" class="pet-emoji">🐣</div>
-        <h2 id="petName">Mochi</h2>
-        <p id="petMood" class="muted">Ready to study with you!</p>
-
-        <div class="pet-level">
-          <span id="petStage">Baby Pet</span>
-          <span>Level <strong id="petLevel">1</strong></span>
-        </div>
-
+        <h3 id="petName">Baby Mochi</h3>
+        <p id="petMessage">Let's grow together. Start studying to earn XP!</p>
         <div class="progress-track">
-          <div id="petXPBar" class="progress-fill"></div>
+          <div id="xpBar" class="progress-fill"></div>
         </div>
-        <p class="muted small">
-          <span id="petXP">0</span> XP ·
-          <span id="petNextXP">100</span> XP to next level
-        </p>
-
-        <div class="pet-stat">
-          <span>💗 Happiness</span>
-          <strong id="petHappiness">100%</strong>
-        </div>
-        <div class="pet-stat">
-          <span>📖 Total study time</span>
-          <strong id="petStudyTime">0 min</strong>
-        </div>
-
-        <p class="pet-note">Your little buddy is cheering for you. Take breaks whenever you need them!</p>
+        <p id="xpText" class="muted">0 / 100 XP to next level</p>
+        <p>Happiness: <strong id="happiness">100%</strong> 💗</p>
+        <button id="feedPetBtn" class="secondary" type="button">
+          💖 Cheer up Mochi
+        </button>
       </article>
     </section>
 
     <section class="card tasks-card">
-      <p class="eyebrow">ONE STEP AT A TIME</p>
-      <h2>Today's study tasks</h2>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">YOUR LITTLE GOALS</p>
+          <h2>Today's tasks 📝</h2>
+        </div>
+        <span id="taskCount" class="task-count">0 tasks</span>
+      </div>
+
       <form id="taskForm" class="task-form">
-        <input id="taskInput" type="text" maxlength="120"
-               placeholder="e.g. Revise Maths Module 2" required>
-        <button class="primary-btn" type="submit">Add task</button>
+        <input id="taskInput" type="text"
+          placeholder="What would you like to study?" maxlength="120" required>
+        <button class="primary" type="submit">+ Add task</button>
       </form>
       <ul id="taskList" class="task-list"></ul>
-      <p id="taskEmpty" class="muted small">Your next little achievement starts here 🌼</p>
+      <p id="emptyTasks" class="muted">Your list is waiting for its first goal 🌷</p>
     </section>
 
-    <footer>Made with 💗 for your goals · FOCUSUP</footer>
+    <footer>Made with ♡ for your future self · FOCUSUP</footer>
   </main>
-
-  <script src="script.js"></script>
 </body>
 </html>
