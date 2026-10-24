@@ -1,263 +1,118 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FOCUSUP | Study Smarter</title>
+  <title>FOCUSUP | Study with Mochi</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <header class="topbar">
+    <a class="logo" href="#">focus<span>up.</span></a>
+    <span class="tagline">a little progress every day 🌷</span>
+  </header>
 
-  <div class="app">
-    <aside class="sidebar">
-      <h2 class="brand">focus<span>up.</span></h2>
-      <p class="side-label">YOUR SPACE</p>
+  <main class="container">
+    <section class="welcome">
+      <p class="eyebrow">YOUR LITTLE CORNER OF CALM</p>
+      <h1>Make time for your dreams.</h1>
+      <p>Study gently, stay consistent, and grow with Mochi.</p>
+    </section>
 
-      <button class="nav-btn active" data-page="home">⌂ &nbsp; Home</button>
-      <button class="nav-btn" data-page="timer">◷ &nbsp; Study Timer</button>
-      <button class="nav-btn" data-page="tasks">✓ &nbsp; My Tasks</button>
-      <button class="nav-btn" data-page="community">♧ &nbsp; Community</button>
-      <button class="nav-btn" data-page="leaderboard">♛ &nbsp; Leaderboard</button>
-      <button class="nav-btn" data-page="settings">⚙ &nbsp; Settings</button>
+    <section class="stats-grid">
+      <article class="stat-card">
+        <span>📚</span><p>Today's study time</p>
+        <h2 id="todayTime">0 min</h2>
+      </article>
+      <article class="stat-card">
+        <span>✨</span><p>Focus sessions</p>
+        <h2 id="sessionCount">0</h2>
+      </article>
+      <article class="stat-card">
+        <span>💗</span><p>Pet experience</p>
+        <h2 id="totalXP">0 XP</h2>
+      </article>
+    </section>
 
-      <div class="sidebar-note">
-        <span>🌱</span>
-        <p>Small steps every day lead to big results.</p>
-      </div>
+    <section class="main-grid">
+      <article class="card timer-card">
+        <p class="eyebrow">TIME TO FOCUS</p>
+        <h2>Your study session</h2>
 
-      <button id="logoutBtn" class="logout-btn">Log out</button>
-    </aside>
-
-    <main class="main">
-      <header class="topbar">
-        <div>
-          <p class="eyebrow">YOUR PERSONAL STUDY SPACE</p>
-          <h1 id="pageHeading">Your study dashboard</h1>
-        </div>
-        <div class="profile">
-          <div class="avatar">S</div>
-          <span id="profileName">Student</span>
-        </div>
-      </header>
-
-      <!-- LOGIN -->
-      <section id="loginPage" class="login-screen">
-        <div class="login-card">
-          <span class="login-emoji">🌿</span>
-          <p class="eyebrow">WELCOME TO YOUR SPACE</p>
-          <h1>Focus today.<br>Build tomorrow.</h1>
-          <p class="muted">Your study companion for a calmer, more productive day.</p>
-          <form id="loginForm">
-            <label for="nameInput">What should we call you?</label>
-            <input id="nameInput" type="text" placeholder="Enter your name" required maxlength="35">
-            <button class="primary-btn full" type="submit">Get started →</button>
-          </form>
-          <div class="login-benefits">
-            <span>◷ Smart timer</span>
-            <span>✓ Study goals</span>
-            <span>♧ Community</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- HOME -->
-      <section id="homePage" class="page">
-        <div class="welcome-banner">
-          <div>
-            <p class="eyebrow">A FRESH START ✨</p>
-            <h2 id="welcomeText">Hello, Student!</h2>
-            <p>Every focused minute is progress. Let's make today count.</p>
-          </div>
-          <div class="plant">🌱</div>
+        <div class="mode-row">
+          <button class="mode active" data-minutes="25">25 min</button>
+          <button class="mode" data-minutes="50">50 min</button>
+          <button class="mode" data-minutes="60">1 hour</button>
         </div>
 
-        <div class="stats-grid">
-          <article class="stat-card">
-            <span class="stat-icon lavender">◷</span>
-            <p>Today's study time</p>
-            <h2 id="todayTime">0 min</h2>
-            <small>Keep growing at your pace</small>
-          </article>
-          <article class="stat-card">
-            <span class="stat-icon peach">✓</span>
-            <p>Tasks completed</p>
-            <h2 id="completedCount">0</h2>
-            <small>Every little win matters</small>
-          </article>
-          <article class="stat-card">
-            <span class="stat-icon green">◎</span>
-            <p>Sessions completed</p>
-            <h2 id="sessionCount">0</h2>
-            <small>One session at a time</small>
-          </article>
+        <label for="customMinutes">Or choose your own duration</label>
+        <div class="custom-row">
+          <input id="customMinutes" type="number" min="1" max="480" value="90">
+          <span>minutes</span>
+          <button id="setDuration" class="secondary-btn">Set</button>
         </div>
 
-        <div class="content-grid">
-          <article class="card">
-            <div class="section-heading">
-              <div>
-                <p class="eyebrow">MAKE A PLAN</p>
-                <h3>Today's study goal</h3>
-              </div>
-              <span>🎯</span>
-            </div>
-            <label for="goalHours">Daily target in hours</label>
-            <div class="goal-row">
-              <input id="goalHours" type="number" min="0.5" max="16" step="0.5" value="2">
-              <button id="saveGoal" class="secondary-btn">Save goal</button>
-            </div>
-            <div class="progress-track"><div id="goalProgress" class="progress-fill"></div></div>
-            <p id="goalCaption" class="muted small">0% of your daily goal completed</p>
-          </article>
-
-          <article class="card quick-card">
-            <p class="eyebrow">READY WHEN YOU ARE</p>
-            <h3>Time to focus?</h3>
-            <p class="muted">Put distractions aside and begin with one small step.</p>
-            <button class="primary-btn full" data-go="timer">Start studying →</button>
-            <button class="secondary-btn full" data-go="tasks">View my tasks</button>
-          </article>
+        <div class="timer-circle">
+          <span id="timerDisplay">25:00</span>
+          <small id="timerStatus">Ready when you are</small>
         </div>
 
-        <article class="card">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">YOUR NEXT STEPS</p>
-              <h3>Today's tasks</h3>
-            </div>
-            <button class="text-btn" data-go="tasks">See all →</button>
-          </div>
-          <div id="homeTasks" class="task-list"></div>
-        </article>
-      </section>
-
-      <!-- TIMER -->
-      <section id="timerPage" class="page hidden">
-        <article class="card timer-card">
-          <p class="eyebrow">YOUR TIME, YOUR PACE</p>
-          <h2 id="timerTitle">Study session</h2>
-          <p class="muted">Choose a duration that works for you.</p>
-
-          <div class="duration-options">
-            <button class="duration-btn" data-minutes="25">25 min</button>
-            <button class="duration-btn" data-minutes="50">50 min</button>
-            <button class="duration-btn" data-minutes="60">1 hour</button>
-            <button class="duration-btn" data-minutes="120">2 hours</button>
-          </div>
-
-          <form id="customTimeForm" class="custom-time">
-            <label for="customMinutes">Or set your own duration (minutes)</label>
-            <div class="custom-row">
-              <input id="customMinutes" type="number" min="1" max="720" placeholder="e.g. 90" required>
-              <button class="secondary-btn" type="submit">Set time</button>
-            </div>
-          </form>
-
-          <div class="timer-circle">
-            <svg class="timer-ring" viewBox="0 0 220 220" aria-hidden="true">
-              <circle class="ring-bg" cx="110" cy="110" r="96"></circle>
-              <circle id="ringProgress" class="ring-progress" cx="110" cy="110" r="96"></circle>
-            </svg>
-            <div class="timer-display">
-              <span id="timerValue">25:00</span>
-              <small id="timerStatus">Ready to focus</small>
-            </div>
-          </div>
-
-          <div class="timer-actions">
-            <button id="startTimer" class="primary-btn">▶ Start</button>
-            <button id="resetTimer" class="secondary-btn">↺ Reset</button>
-          </div>
-          <p class="muted small">The timer runs while this page is open. You can pause whenever you need a break.</p>
-        </article>
-      </section>
-
-      <!-- TASKS -->
-      <section id="tasksPage" class="page hidden">
-        <article class="card">
-          <p class="eyebrow">ONE THING AT A TIME</p>
-          <h2>My study tasks ✓</h2>
-          <p class="muted">Write it down. Work through it. Celebrate the progress.</p>
-          <form id="taskForm" class="task-form">
-            <input id="taskInput" type="text" maxlength="100" placeholder="e.g. Revise Maths Unit 2" required>
-            <button class="primary-btn" type="submit">+ Add task</button>
-          </form>
-          <div id="taskList" class="task-list"></div>
-          <p id="emptyTasks" class="muted empty-state">No tasks yet. Add your first one above 🌷</p>
-        </article>
-      </section>
-
-      <!-- COMMUNITY -->
-      <section id="communityPage" class="page hidden">
-        <div class="welcome-banner">
-          <div>
-            <p class="eyebrow">BETTER TOGETHER</p>
-            <h2>Study together 🌷</h2>
-            <p>Share your progress and encourage other learners.</p>
-          </div>
-          <span class="plant">💚</span>
+        <div class="button-row">
+          <button id="startTimer" class="primary-btn">Start studying</button>
+          <button id="resetTimer" class="secondary-btn">Reset</button>
         </div>
 
-        <article class="card">
-          <h3>Share an update</h3>
-          <form id="postForm">
-            <textarea id="postInput" maxlength="280" placeholder="What are you studying today? Share a little win..." required></textarea>
-            <div class="post-footer">
-              <span class="muted small">Be kind. Keep each other motivated.</span>
-              <button class="primary-btn" type="submit">Post update</button>
-            </div>
-          </form>
-        </article>
+        <p class="hint">🌿 Every focused minute earns Mochi 1 XP.</p>
+      </article>
 
-        <div id="communityFeed" class="feed"></div>
-        <p class="muted small">Demo mode: posts are saved only in this browser, not shared with other users.</p>
-      </section>
+      <article class="card pet-card">
+        <p class="eyebrow">YOUR STUDY COMPANION</p>
+        <div id="petEmoji" class="pet-emoji">🐣</div>
+        <h2 id="petName">Mochi</h2>
+        <p id="petMood" class="muted">Ready to study with you!</p>
 
-      <!-- LEADERBOARD -->
-      <section id="leaderboardPage" class="page hidden">
-        <article class="card">
-          <p class="eyebrow">PROGRESS, NOT PRESSURE</p>
-          <h2>Study leaderboard 🏆</h2>
-          <p class="muted">A sample leaderboard to inspire your study journey.</p>
-          <div id="leaderboard" class="leaderboard"></div>
-          <p class="muted small">Sample data only. A shared, live leaderboard requires a backend and database.</p>
-        </article>
-        <article class="card">
-          <h3>Your progress</h3>
-          <p id="yourRank" class="muted">Complete a study session to start tracking your progress.</p>
-        </article>
-      </section>
+        <div class="pet-level">
+          <span id="petStage">Baby Pet</span>
+          <span>Level <strong id="petLevel">1</strong></span>
+        </div>
 
-      <!-- SETTINGS -->
-      <section id="settingsPage" class="page hidden">
-        <article class="card">
-          <p class="eyebrow">MAKE IT YOURS</p>
-          <h2>Settings ⚙</h2>
-          <div class="setting-row">
-            <div><strong>Study reminders</strong><p class="muted small">A gentle reminder while using the site.</p></div>
-            <label class="switch"><input type="checkbox" id="reminderToggle"><span></span></label>
-          </div>
-          <div class="setting-row">
-            <div><strong>Focus mode</strong><p class="muted small">Hide distracting sections within this website.</p></div>
-            <label class="switch"><input type="checkbox" id="focusToggle"><span></span></label>
-          </div>
-          <div class="setting-row">
-            <div><strong>Reset study statistics</strong><p class="muted small">Clear saved study time and session count.</p></div>
-            <button id="resetStats" class="secondary-btn">Reset stats</button>
-          </div>
-          <div class="setting-row">
-            <div><strong>Clear all local data</strong><p class="muted small">Remove your local tasks, posts and preferences.</p></div>
-            <button id="clearData" class="danger-btn">Clear data</button>
-          </div>
-          <p class="muted small">Your demo data is stored in this browser. It does not sync between devices.</p>
-        </article>
-      </section>
+        <div class="progress-track">
+          <div id="petXPBar" class="progress-fill"></div>
+        </div>
+        <p class="muted small">
+          <span id="petXP">0</span> XP ·
+          <span id="petNextXP">100</span> XP to next level
+        </p>
 
-      <footer>Made for your goals, one focused minute at a time. 🌿</footer>
-    </main>
-  </div>
+        <div class="pet-stat">
+          <span>💗 Happiness</span>
+          <strong id="petHappiness">100%</strong>
+        </div>
+        <div class="pet-stat">
+          <span>📖 Total study time</span>
+          <strong id="petStudyTime">0 min</strong>
+        </div>
 
-  <div id="toast" class="toast" role="status"></div>
+        <p class="pet-note">Your little buddy is cheering for you. Take breaks whenever you need them!</p>
+      </article>
+    </section>
+
+    <section class="card tasks-card">
+      <p class="eyebrow">ONE STEP AT A TIME</p>
+      <h2>Today's study tasks</h2>
+      <form id="taskForm" class="task-form">
+        <input id="taskInput" type="text" maxlength="120"
+               placeholder="e.g. Revise Maths Module 2" required>
+        <button class="primary-btn" type="submit">Add task</button>
+      </form>
+      <ul id="taskList" class="task-list"></ul>
+      <p id="taskEmpty" class="muted small">Your next little achievement starts here 🌼</p>
+    </section>
+
+    <footer>Made with 💗 for your goals · FOCUSUP</footer>
+  </main>
+
   <script src="script.js"></script>
 </body>
 </html>
